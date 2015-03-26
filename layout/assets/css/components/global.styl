@@ -1,0 +1,65 @@
+.clear,
+.clear-line {
+  display block
+  clear both
+}
+.clear-line {
+  font-size 0
+  line-height 0
+}
+.clearfix {
+  clearfix()
+}
+.strong {
+  font-weight 700 !important
+}
+.italic {
+  font-style italic !important
+}
+.hide {
+  display none !important
+}
+.show {
+  display block !important
+}
+.left {
+  float left !important
+}
+.right {
+  float right !important
+}
+.align-justify {
+  text-align justify !important
+}
+.align-left {
+  text-align left !important
+}
+.align-center {
+  text-align center !important
+}
+.align-right {
+  text-align right !important
+}
+.line-through {
+  text-decoration line-through !important
+}
+.text-uppercase {
+  text-transform uppercase !important
+}
+.text-capitalize {
+  text-transform capitalize !important
+}
+.text-lowercase {
+  text-transform lowercase !important
+}
+
+for mb in 0..60
+  if mb % 5 == 0
+    .mb{mb} {
+      margin-bottom unit(mb, 'px') !important
+    }
+
+for fs in 10..20
+  .fs{fs} {
+    font-size unit(fs, 'px') !important
+  }

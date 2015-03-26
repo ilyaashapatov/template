@@ -1,0 +1,50 @@
+gradient(color, start, stop)
+  background color
+  background linear-gradient(to bottom,  start 0%, stop 100%)
+
+
+gradient-hor(color, start, stop)
+  background color
+  background-image linear-gradient(to right, start, stop)
+  background-repeat repeat-x
+
+
+placeholder(color = $text-color, style = italic, font = $font-body)
+  mixin()
+    color color
+    font-style style
+    font-family font
+
+  &::-webkit-input-placeholder
+    mixin()
+  &::-moz-placeholder
+    mixin()
+  &:-moz-placeholder
+    mixin()
+  &:-ms-input-placeholder
+    mixin()
+
+
+clearfix()
+  &:before
+  &:after
+    content " "
+    display table
+
+  &:after
+    clear both
+
+
+clear-list()
+  margin 0
+  padding 0
+  list-style none
+  line-height normal
+
+
+size(width, height = null)
+  width width
+  if height
+    height height
+  else
+    height width

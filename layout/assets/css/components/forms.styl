@@ -1,0 +1,54 @@
+base_styles_fields()
+  display block
+  border $border-width-base solid #ccc
+  border-radius 3px
+
+  padding $padding-vertical-base $padding-horizontal-base
+  width 100%
+
+  background #fff
+  color $text-color
+
+  font normal $font-size-base/$line-height-base $font-base
+
+  box-sizing border-box
+  transition border-color ease .3s
+
+  placeholder(color = #666)
+
+  &:focus
+    border-color #aaa
+    placeholder(color = #ccc)
+
+  // .error &
+  //   border-color $error-color
+
+
+textarea
+  base_styles_fields()
+  padding-top $padding-horizontal-base
+  padding-bottom $padding-horizontal-base
+  height ((5 * $line-height-base-px) + ($border-width-base * 2) + ($padding-horizontal-base * 2))px
+
+
+select,
+input[type="text"]
+input[type="password"]
+input[type="datetime"]
+input[type="datetime-local"]
+input[type="date"]
+input[type="month"]
+input[type="time"]
+input[type="week"]
+input[type="number"]
+input[type="email"]
+input[type="url"]
+input[type="search"]
+input[type="tel"]
+input[type="color"] {
+  base_styles_fields()
+  height floor(($padding-vertical-base * 2) + ($border-width-base * 2) + $line-height-base-px)
+}
+
+.form-field
+  margin-bottom $margin-bottom-fields

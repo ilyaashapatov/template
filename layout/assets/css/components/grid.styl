@@ -1,0 +1,46 @@
+.g-row
+  margin-left ($grid-padding / -1)
+  margin-right ($grid-padding / -1)
+  clearfix()
+  font-size 0
+  line-height 0
+
+grid-list = ''
+for index in 1..$grid-columns
+  grid-list = grid-list + ", .g-bs-" + index
+  grid-list = grid-list + ", .g-xs-" + index
+  grid-list = grid-list + ", .g-sm-" + index
+  grid-list = grid-list + ", .g-md-" + index
+  grid-list = grid-list + ", .g-lg-" + index
+
+
+{grid-list}
+  padding-left $grid-padding
+  padding-right $grid-padding
+  box-sizing border-box
+  width 100%
+  min-height 1px
+  font-size $font-size-body
+  line-height $line-height-body
+  vertical-align top
+
+
+make-grid($size)
+  for $index in 1..$grid-columns
+    .g-{$size}-{$index}
+      display inline-block
+      width (floor($index / $grid-columns * 100, 3))%
+
+make-grid(bs)
+
+@media (min-width $xs)
+  make-grid(xs)
+
+@media (min-width $sm)
+  make-grid(sm)
+
+@media (min-width $md)
+  make-grid(md)
+
+@media (min-width $lg)
+  make-grid(lg)

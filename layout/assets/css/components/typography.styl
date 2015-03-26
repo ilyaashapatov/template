@@ -1,0 +1,151 @@
+$font-typography = $font-body
+$font-size-typography = $font-size-body
+$line-height-typography = $line-height-body
+
+$font-size-h1 = ceil(($font-size-typography * 2.2))
+$font-size-h2 = ceil(($font-size-typography * 1.8))
+$font-size-h3 = ceil(($font-size-typography * 1.4))
+$font-size-h4 = ceil(($font-size-typography * 1.2))
+$font-size-h5 = $font-size-typography
+$font-size-h6 = ceil(($font-size-typography * 0.85))
+
+$margin-bottom-typography = 10px
+
+
+// heading
+h1
+h2
+h3
+h4
+h5
+h6
+  margin-top 20px
+  margin-bottom 10px
+  font-weight 700
+  line-height normal
+
+
+h1
+  font-size $font-size-h1
+
+h2
+  font-size $font-size-h2
+
+h3
+  font-size $font-size-h3
+
+h4
+  font-size $font-size-h4
+
+h5
+  font-size $font-size-h5
+
+h6
+  font-size $font-size-h6
+
+
+// margin-bottom
+p
+ul
+ol
+table
+blockquote
+  margin-bottom $margin-bottom-typography
+
+
+// blockquote
+blockquote
+  margin-left 20px
+  padding-left 20px
+  font-style italic
+  border-left 3px solid $base-color
+
+
+// Tables
+table
+  border-spacing 0
+  border-collapse collapse
+  max-width 100%
+
+
+th
+td
+  border 1px solid #ddd
+  padding 8px
+  line-height 18px
+  text-align left
+  vertical-align top
+
+
+th
+  font-weight bold
+
+  thead &
+    background-color #F3F3F3
+    border-bottom-width 2px
+
+
+thead td
+  background #F3F3F3
+
+
+// Lists
+ol
+ul
+  padding-left 30px
+
+
+ul
+  list-style disc
+
+
+ul ul
+  list-style circle
+
+
+ul ul ul
+  list-style square
+
+
+ol
+  list-style decimal
+
+
+ul.unstyled
+ol.unstyled
+  padding-left 0
+  list-style none
+
+
+// Images
+img
+  max-width 100%
+  height auto
+  clear both
+
+
+
+.typography
+  font $font-size-typography/$line-height-typography $font-typography
+
+  &:after
+  &:before
+    display block
+    content ''
+
+
+  &:after
+    clear both
+
+
+  > p
+  > ul
+  > ol
+  > table
+  td p
+  th p
+  td ul
+  td ol
+
+    &:last-child
+      margin-bottom 0

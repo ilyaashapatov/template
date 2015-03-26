@@ -1,0 +1,44 @@
+.btn
+  display inline-block
+  border $border-width-base solid $base-color-dark
+  border-radius 3px
+
+  padding $padding-vertical-base $padding-horizontal-base
+  height floor(($padding-vertical-base * 2) + ($border-width-base * 2) + $line-height-base-px)
+
+  background $base-color
+  color #fff
+
+  font normal $font-size-base/$line-height-base $font-base
+
+  vertical-align middle
+  font-weight normal
+  text-align center
+  text-decoration none
+  white-space nowrap
+
+  cursor pointer
+  box-sizing border-box
+  touch-action manipulation
+  user-select none
+  transition background-color ease .3s
+
+  &.disabled
+  &[disabled]
+    opacity .65
+    cursor default
+    pointer-events none
+
+  &:hover
+  &:focus
+    background-color lighten($base-color, 10%)
+
+
+  &:active
+    transition-duration 0
+    background-color darken($base-color, 5%)
+
+
+.btn_block
+  display block
+  width 100%
