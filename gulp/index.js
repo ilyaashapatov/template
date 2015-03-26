@@ -52,7 +52,7 @@ module.exports = function(config){
       )
       .pipe(concat(config.js.name))
       .pipe(gulp.dest(dest + config.js.dest))
-  }); //task js
+  });
 
 
 
