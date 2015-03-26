@@ -1,0 +1,8 @@
+materials/
+node*/
+*.rar
+*.zip
+*.db
+*.tmp
+*.psd
+.DS_Store
