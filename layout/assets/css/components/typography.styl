@@ -1,6 +1,6 @@
-$font-typography = $font-body
-$font-size-typography = $font-size-body
-$line-height-typography = $line-height-body
+$font-typography = $font-base
+$font-size-typography = $font-size-base
+$line-height-typography = $line-height-base
 
 $font-size-h1 = ceil(($font-size-typography * 2.2))
 $font-size-h2 = ceil(($font-size-typography * 1.8))
@@ -19,11 +19,19 @@ h3
 h4
 h5
 h6
-  margin-top 20px
   margin-bottom 10px
   font-weight 700
   line-height normal
 
+h1
+h2
+h3
+  margin-top 20px
+
+h4
+h5
+h6
+  margin-top 10px
 
 h1
   font-size $font-size-h1
@@ -44,24 +52,26 @@ h6
   font-size $font-size-h6
 
 
-// margin-bottom
 p
 ul
 ol
 table
 blockquote
-  margin-bottom $margin-bottom-typography
+  margin 0 0 10px
 
 
-// blockquote
 blockquote
   margin-left 20px
   padding 10px 20px
   font-style italic
   border-left 3px solid $base-color
 
+  ul:last-child
+  ol:last-child
+  p:last-child
+    margin-bottom 0
 
-// Tables
+
 table
   border-spacing 0
   border-collapse collapse
@@ -94,6 +104,10 @@ ol
 ul
   padding-left 30px
 
+  ul
+  ol
+    margin-bottom 0
+
 
 ul
   list-style disc
@@ -117,12 +131,9 @@ ol.unstyled
   list-style none
 
 
-// Images
 img
   max-width 100%
-  height auto
-  clear both
-
+  vertical-align top
 
 
 .typography
