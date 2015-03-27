@@ -1,6 +1,13 @@
+.constrain
+  margin-left auto
+  margin-right auto
+  padding 0 $grid-padding
+  max-width 960px
+
+
 .g-row
-  margin-left ($grid-padding / -1)
-  margin-right ($grid-padding / -1)
+  margin-left ($grid-padding / -2)
+  margin-right ($grid-padding / -2)
   clearfix()
   font-size 0
   line-height 0
@@ -15,13 +22,13 @@ for index in 1..$grid-columns
 
 
 {grid-list}
-  padding-left $grid-padding
-  padding-right $grid-padding
+  padding-left ($grid-padding / 2)
+  padding-right ($grid-padding / 2)
   box-sizing border-box
   width 100%
   min-height 1px
-  font-size $font-size-body
-  line-height $line-height-body
+  font-size $font-size-base
+  line-height $line-height-base
   vertical-align top
 
 
