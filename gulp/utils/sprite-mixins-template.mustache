@@ -1,0 +1,20 @@
+{{#items}}
+{{mixin_name}}(arg = null, arg2 = null)
+  importance = unquote("")
+  if arg and arg2
+    if arg2 == !important or arg2 == important
+      importance = !important
+  else if arg == !important or arg == important
+      importance = !important
+  if p in arg or r in arg
+    background-position: {{px.offset_x}} {{px.offset_y}} importance
+    if r in arg
+      width: {{px.width}} importance
+      height: {{px.height}} importance
+  else
+    display: inline-block importance
+    background: url({{{image_src}}}) no-repeat {{px.offset_x}} {{px.offset_y}} importance
+    width: {{px.width}} importance
+    height: {{px.height}} importance
+
+{{/items}}

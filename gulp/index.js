@@ -8,17 +8,16 @@ module.exports = function(config){
       cssmin = require('gulp-cssmin'),
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
-      requi = require('gulp-requi');
+      requi = require('gulp-requi'),
+      spritesmith = require('gulp.spritesmith');
 
   var errors = require('./utils/errors'),
-      source = config.source,
-      dest = config.dest,
       debug = false;
 
 
 // =================== CSS ===================
   gulp.task('css', function() {
-    gulp.src(source + config.css.source)
+    gulp.src(config.css.source)
       .pipe(stylus())
       .on('error', errors)
       .pipe(autoprefixer({ browsers: config.css.autoprefixer }))
@@ -29,13 +28,13 @@ module.exports = function(config){
         )
       )
       .pipe(concat(config.css.name))
-      .pipe(gulp.dest(dest + config.css.dest))
+      .pipe(gulp.dest(config.css.dest))
   });
 
 
 // =================== Scripts ===================
   gulp.task('js', function() {
-    gulp.src(source + config.js.source)
+    gulp.src(config.js.source)
       .pipe(requi())
       .pipe(
         gulpif(
@@ -51,22 +50,46 @@ module.exports = function(config){
         )
       )
       .pipe(concat(config.js.name))
-      .pipe(gulp.dest(dest + config.js.dest))
+      .pipe(gulp.dest(config.js.dest))
+  });
+
+
+// =================== Sprites ===================
+  gulp.task('sprites', function() {
+    var spriteData = gulp.src(config.sprites.source)
+
+      .pipe(spritesmith({
+        imgName: config.sprites.nameSprite,
+        cssName: config.sprites.nameMixins,
+        padding: 0,
+        cssFormat: 'stylus',
+        cssTemplate: config.sprites.tmpl,
+        cssVarMap: function(sprite) {
+          sprite.image_src = config.sprites.src;
+          sprite.mixin_name = 's-' + sprite.name;
+        }
+      }));
+
+    spriteData.css.pipe(gulp.dest(config.sprites.mixins));
+    spriteData.img.pipe(gulp.dest(config.sprites.dest));
   });
 
 
 
   gulp.task('watch', function(){
-    watch(source + config.js.watch, function() {
+    watch(config.js.watch, function() {
         gulp.start('js');
     });
-    watch(source + config.css.watch, function() {
+    watch(config.sprites.watch, function() {
+        gulp.start('sprites');
+    });
+    watch(config.css.watch, function() {
         gulp.start('css');
     });
   });
 
   gulp.task('default', function(){
-    gulp.start(['js', 'css', 'watch']);
+    gulp.start(['js', 'sprites', 'css', 'watch']);
   });
 
   gulp.task('debug', function(){

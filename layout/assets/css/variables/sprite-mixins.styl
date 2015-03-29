@@ -1,0 +1,18 @@
+s-sn-twitter(arg = null, arg2 = null)
+  importance = unquote("")
+  if arg and arg2
+    if arg2 == !important or arg2 == important
+      importance = !important
+  else if arg == !important or arg == important
+      importance = !important
+  if p in arg or r in arg
+    background-position: 0px 0px importance
+    if r in arg
+      width: 28px importance
+      height: 23px importance
+  else
+    display: inline-block importance
+    background: url(../images/sprite.png) no-repeat 0px 0px importance
+    width: 28px importance
+    height: 23px importance
+

@@ -1,20 +1,31 @@
-var config = {
-    'source': 'layout/assets',
-    'dest': 'layout/media',
+var dest = 'layout/media',
+    source = 'layout/assets';
 
+var config = {
     'js': {
-        'source': '/js/main.js',
+        'source': source + '/js/main.js',
         'name': 'main.js',
-        'dest': '/js',
-        'watch': '/js/**'
+        'dest': dest + '/js',
+        'watch': source + '/js/**'
     },
 
     'css': {
-        'source': '/css/main.styl',
+        'source': source + '/css/main.styl',
         'name': 'main.css',
-        'dest': '/css',
-        'watch': '/css/**',
+        'dest': dest + '/css',
+        'watch': source + '/css/**',
         'autoprefixer': ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera > 10', 'Explorer >= 9']
+    },
+
+    'sprites': {
+        'source': dest + '/images/sprites/*.png',
+        'dest': dest + '/images',
+        'nameSprite': 'sprite.png',
+        'src': '../images/sprite.png',
+        'watch': dest + '/images/sprites/*.png',
+        'tmpl': 'gulp/utils/sprite-mixins-template.mustache',
+        'mixins': source + '/css/variables',
+        'nameMixins': 'sprite-mixins.styl'
     }
 }
 
