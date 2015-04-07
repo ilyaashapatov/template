@@ -2018,13 +2018,3 @@
 	});
 
 }(window, document, jQuery));
-(function() {
-  (function() {
-    return console.log('ok');
-  })();
-
-}).call(this);
-
-//= require plugins/**/*
-//= require !plugins/fancybox/*/*.*
-//= require scripts.coffee
