@@ -9,7 +9,7 @@ gradient-hor(color, start, stop)
   background-repeat repeat-x
 
 
-placeholder(color = $text-color, style = italic, font = $font-body)
+placeholder(color = $text-color, style = normal, font = $font-body)
   mixin()
     color color
     font-style style
@@ -40,6 +40,9 @@ clear-list()
   padding 0
   list-style none
   line-height normal
+
+clearlist()
+  clear-list()
 
 
 size(width, height = null)
