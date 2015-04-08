@@ -1,15 +1,16 @@
 base_styles_fields()
   display block
-  border $border-width-base solid #ccc
+  border 1px solid #ccc
   border-radius 3px
 
-  padding $padding-vertical-base $padding-horizontal-base
+  padding 7px 14px 8px
   width 100%
+  height 34px
 
   background #fff
   color $text-color
 
-  font normal $font-size-base/$line-height-base $font-base
+  font 400 $font-size-base/1.3 $font-family-base
 
   box-sizing border-box
   transition border-color ease .3s
@@ -20,35 +21,25 @@ base_styles_fields()
     border-color #aaa
     placeholder(color = #ccc)
 
-  // .error &
-  //   border-color $error-color
+  &[disabled]
+  &[readonly]
+    opacity .6
+
+  &.error
+  .error &
+    border-color #ff0000
 
 
-textarea
+.form-control
   base_styles_fields()
-  padding-top $padding-horizontal-base
-  padding-bottom $padding-horizontal-base
-  height ((5 * $line-height-base-px) + ($border-width-base * 2) + ($padding-horizontal-base * 2))px
+
+  textarea&
+    height auto
 
 
-select,
-input[type="text"]
-input[type="password"]
-input[type="datetime"]
-input[type="datetime-local"]
-input[type="date"]
-input[type="month"]
-input[type="time"]
-input[type="week"]
-input[type="number"]
-input[type="email"]
-input[type="url"]
-input[type="search"]
-input[type="tel"]
-input[type="color"] {
-  base_styles_fields()
-  height floor(($padding-vertical-base * 2) + ($border-width-base * 2) + $line-height-base-px)
-}
+.form-group
+  margin-bottom 15px
 
-.form-field
-  margin-bottom $margin-bottom-fields
+  label
+    display block
+    margin-bottom 5px
