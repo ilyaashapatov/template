@@ -17,6 +17,13 @@ var config = {
         'autoprefixer': ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera > 10', 'Explorer >= 9']
     },
 
+    'bootstrap': {
+        'source': source + '/css/bootstrap/bootstrap.less',
+        'name': 'bootstrap.css',
+        'dest': dest + '/css',
+        'watch': source + '/css/bootstrap/**',
+    },
+
     'sprites': {
         'source': dest + '/images/sprites/*.png',
         'dest': dest + '/images',

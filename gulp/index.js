@@ -5,6 +5,7 @@ module.exports = function(config){
       autoprefixer = require('gulp-autoprefixer'),
       coffee = require('gulp-coffee'),
       stylus = require('gulp-stylus'),
+      less = require('gulp-less'),
       cssmin = require('gulp-cssmin'),
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
@@ -29,6 +30,21 @@ module.exports = function(config){
       )
       .pipe(concat(config.css.name))
       .pipe(gulp.dest(config.css.dest))
+  });
+
+// =================== Bootstrap ===================
+  gulp.task('bootstrap', function() {
+    gulp.src(config.bootstrap.source)
+      .pipe(less())
+      .on('error', errors)
+      .pipe(
+        gulpif(
+          !debug,
+          cssmin()
+        )
+      )
+      .pipe(concat(config.bootstrap.name))
+      .pipe(gulp.dest(config.bootstrap.dest))
   });
 
 
@@ -86,10 +102,13 @@ module.exports = function(config){
     watch(config.css.watch, function() {
         gulp.start('css');
     });
+    watch(config.bootstrap.watch, function() {
+        gulp.start('bootstrap');
+    });
   });
 
   gulp.task('default', function(){
-    gulp.start(['js', 'sprites', 'css', 'watch']);
+    gulp.start(['js', 'sprites', 'css', 'bootstrap', 'watch']);
   });
 
   gulp.task('debug', function(){
