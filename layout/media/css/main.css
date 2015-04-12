@@ -32,68 +32,6 @@ form {
   background: transparent;
   box-sizing: border-box;
 }
-html:after,
-body:after,
-div:after,
-span:after,
-strong:after,
-h1:after,
-h2:after,
-h3:after,
-h4:after,
-h5:after,
-h6:after,
-p:after,
-blockquote:after,
-a:after,
-address:after,
-em:after,
-img:after,
-ins:after,
-q:after,
-b:after,
-u:after,
-i:after,
-object:after,
-label:after,
-ul:after,
-li:after,
-ol:after,
-form:after,
-html:before,
-body:before,
-div:before,
-span:before,
-strong:before,
-h1:before,
-h2:before,
-h3:before,
-h4:before,
-h5:before,
-h6:before,
-p:before,
-blockquote:before,
-a:before,
-address:before,
-em:before,
-img:before,
-ins:before,
-q:before,
-b:before,
-u:before,
-i:before,
-object:before,
-label:before,
-ul:before,
-li:before,
-ol:before,
-form:before {
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-}
 table {
   border-collapse: collapse;
   border-spacing: 0;

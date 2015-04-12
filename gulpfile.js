@@ -18,7 +18,7 @@ var config = {
     },
 
     'bootstrap': {
-        'source': source + '/css/bootstrap/bootstrap.less',
+        'source': source + '/bootstrap/bootstrap.less',
         'name': 'bootstrap.css',
         'dest': dest + '/css',
         'watch': source + '/css/bootstrap/**',
