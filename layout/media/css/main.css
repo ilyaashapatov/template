@@ -1226,6 +1226,15 @@ textarea.form-control {
   display: block;
   margin-bottom: 5px;
 }
+.fancybox-gallery-skin .fancybox-skin {
+  box-shadow: none !important;
+  background: #333;
+  color: #fff;
+}
+.popup {
+  padding: 20px;
+  background: #fff;
+}
 .footer {
   position: absolute;
   left: 0;
