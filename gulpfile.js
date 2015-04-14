@@ -26,6 +26,7 @@ var config = {
 
     'sprites': {
         'source': dest + '/images/sprites/*.png',
+        'sourceRetina': dest + '/images/sprites/*-2x.png',
         'dest': dest + '/images',
         'nameSprite': 'sprite.png',
         'src': '../images/sprite.png',
