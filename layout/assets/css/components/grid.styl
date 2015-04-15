@@ -39,14 +39,20 @@ make-grid($size)
 
 make-grid(bs)
 
-@media (min-width $xs)
+@media $m-xs
   make-grid(xs)
 
-@media (min-width $sm)
+@media $m-sm
   make-grid(sm)
 
-@media (min-width $md)
+@media $m-md
   make-grid(md)
 
-@media (min-width $lg)
+@media $m-lg
   make-grid(lg)
+
+@media $m-only-xxs {
+  .bgffff {
+    color #fff
+  }
+}

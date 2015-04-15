@@ -24,6 +24,25 @@ $sm = 768px
 $md = 1000px
 $lg = 1200px
 
+$xs-max = $sm - 1
+$sm-max = $md - 1
+$md-max = $lg - 1
+
+// media-*
+$m-xs = '(min-width:' + $xs + ')'
+$m-sm = '(min-width:' + $sm + ')'
+$m-md = '(min-width:' + $md + ')'
+$m-lg = '(min-width:' + $lg + ')'
+
+$m-only-xxs = '(max-width:' + ($xs - 1) + ')'
+$m-only-xs = $m-xs + ' and (max-width:' + $xs-max + ')'
+$m-only-sm = $m-sm + ' and (max-width:' + $sm-max + ')'
+$m-only-md = $m-md + ' and (max-width:' + $md-max + ')'
+
+$m-phones = '(max-width:' + $xs-max + ')'
+$m-tablets = $m-only-sm
+$m-desktops = $m-md
+
 // ==== Grid ====
 $grid-columns = 12
 $grid-padding = 20px

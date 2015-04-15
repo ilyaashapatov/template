@@ -964,6 +964,11 @@ a {
     width: 100%;
   }
 }
+@media (max-width: 479px) {
+  .bgffff {
+    color: #fff;
+  }
+}
 h1,
 h2,
 h3,
@@ -1257,7 +1262,7 @@ textarea.form-control {
 .visible-only-xs {
   display: none !important;
 }
-@media (max-width: $md-max) {
+@media (max-width: 1199px) {
   .visible-md,
   .visible-only-md,
   .hidden-only-bs {
@@ -1269,7 +1274,7 @@ textarea.form-control {
     display: none !important;
   }
 }
-@media (max-width: $sm-max) {
+@media (max-width: 999px) {
   .visible-sm,
   .visible-only-sm,
   .hidden-only-md {
@@ -1281,7 +1286,7 @@ textarea.form-control {
     display: none !important;
   }
 }
-@media (max-width: $xs-max) {
+@media (max-width: 767px) {
   .visible-xs,
   .visible-only-xs,
   .hidden-only-sm {
