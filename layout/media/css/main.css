@@ -1275,7 +1275,7 @@ textarea.form-control {
 .icheckbox:before {
   background: url("../images/icheck/icheckbox.png") no-repeat;
 }
-@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-resolution: 144dpi) {
   .icheckbox:before {
     background-image: url("../images/icheck/icheckbox@2x.png");
     background-size: 12px 12px;
