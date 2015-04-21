@@ -1354,3 +1354,9 @@ textarea.form-control {
     display: none !important;
   }
 }
+.sssg {
+  display: inline-block;
+  background: url("../images/sprite.png") no-repeat -38px 0px;
+  width: 38px;
+  height: 38px;
+}

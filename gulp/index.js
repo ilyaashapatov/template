@@ -10,6 +10,7 @@ module.exports = function(config){
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
       requi = require('gulp-requi'),
+      unretina = require('gulp-unretina'),
       spritesmith = require('gulp.spritesmith');
 
   var errors = require('./utils/errors'),
@@ -28,7 +29,7 @@ module.exports = function(config){
           cssmin()
         )
       )
-      .pipe(concat(config.css.name))
+      .pipe(concat(config.css.name + '.css'))
       .pipe(gulp.dest(config.css.dest))
   });
 
@@ -43,7 +44,7 @@ module.exports = function(config){
           cssmin()
         )
       )
-      .pipe(concat(config.bootstrap.name))
+      .pipe(concat(config.bootstrap.name + '.css'))
       .pipe(gulp.dest(config.bootstrap.dest))
   });
 
@@ -65,31 +66,43 @@ module.exports = function(config){
           uglify()
         )
       )
-      .pipe(concat(config.js.name))
+      .pipe(concat(config.js.name + '.js'))
       .pipe(gulp.dest(config.js.dest))
   });
 
 
 // =================== Sprites ===================
   gulp.task('sprites', function() {
+    var imgName = config.sprites.nameSprite + '.png'
+
+    if (config.sprites.retina) {
+      imgName = config.sprites.nameSprite + '@2x.png'
+    }
+
     var spriteData = gulp.src(config.sprites.source)
 
-      .pipe(spritesmith({
-        imgName: config.sprites.nameSprite,
-        cssName: config.sprites.nameMixins,
-        padding: 0,
-        cssFormat: 'stylus',
-        cssTemplate: config.sprites.tmpl,
-        cssVarMap: function(sprite) {
-          sprite.image_src = config.sprites.src;
-          sprite.mixin_name = 's-' + sprite.name;
-        }
-      }));
+        .pipe(spritesmith({
+          imgName: imgName,
+          cssName: config.sprites.nameMixins + '.styl',
+          padding: 0,
+          cssFormat: 'stylus',
+          cssTemplate: config.sprites.tmpl,
+          cssVarMap: function(sprite) {
+            sprite.retina = config.sprites.retina
+          }
+        }));
 
     spriteData.css.pipe(gulp.dest(config.sprites.mixins));
     spriteData.img.pipe(gulp.dest(config.sprites.dest));
   });
 
+  gulp.task('resize_sprites', function(){
+    gulp.src(config.sprites.dest + '/' + config.sprites.nameSprite + '@2x.png')
+        .pipe(unretina())
+        .pipe(gulp.dest(config.sprites.dest));
+  });
+
+// ============================================================================
 
 
   gulp.task('watch', function(){
@@ -105,6 +118,12 @@ module.exports = function(config){
     watch(config.bootstrap.watch, function() {
         gulp.start('bootstrap');
     });
+
+    if (config.sprites.retina) {
+      watch(config.sprites.dest + '/' + config.sprites.nameSprite + '@2x.png', function() {
+        gulp.start('resize_sprites');
+      });
+    }
   });
 
   gulp.task('default', function(){

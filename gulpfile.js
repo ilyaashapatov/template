@@ -4,14 +4,14 @@ var dest = 'layout/media',
 var config = {
     'js': {
         'source': source + '/js/main.js',
-        'name': 'main.js',
+        'name': 'main',
         'dest': dest + '/js',
         'watch': source + '/js/**'
     },
 
     'css': {
         'source': source + '/css/main.styl',
-        'name': 'main.css',
+        'name': 'main',
         'dest': dest + '/css',
         'watch': source + '/css/**',
         'autoprefixer': ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera > 10', 'Explorer >= 9']
@@ -19,21 +19,20 @@ var config = {
 
     'bootstrap': {
         'source': source + '/bootstrap/bootstrap.less',
-        'name': 'bootstrap.css',
+        'name': 'bootstrap',
         'dest': dest + '/css',
         'watch': source + '/css/bootstrap/**',
     },
 
     'sprites': {
+        'retina': false,
+        'tmpl': 'gulp/utils/sprite-template.mustache',
         'source': dest + '/images/sprites/*.png',
-        'sourceRetina': dest + '/images/sprites/*-2x.png',
         'dest': dest + '/images',
-        'nameSprite': 'sprite.png',
-        'src': '../images/sprite.png',
+        'nameSprite': 'sprite',
         'watch': dest + '/images/sprites/*.png',
-        'tmpl': 'gulp/utils/sprite-mixins-template.mustache',
         'mixins': source + '/css/variables',
-        'nameMixins': 'sprite-mixins.styl'
+        'nameMixins': 'sprite-mixins'
     }
 }
 

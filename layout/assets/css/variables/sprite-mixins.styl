@@ -1,36 +1,70 @@
-s-demo(arg = null, arg2 = null)
+s-fb(arg = null, arg2 = null)
   importance = unquote("")
-  if arg and arg2
-    if arg2 == !important or arg2 == important
-      importance = !important
-  else if arg == !important or arg == important
-      importance = !important
-  if p in arg or r in arg
-    background-position: 0px 0px importance
-    if r in arg
-      width: 25px importance
-      height: 25px importance
-  else
-    display: inline-block importance
-    background: url(../images/sprite.png) no-repeat 0px 0px importance
-    width: 25px importance
-    height: 25px importance
+  offset_x = 0px
+  offset_y = 0px
+  width = 38px
+  height = 38px
+  retina = false
 
-s-demo2(arg = null, arg2 = null)
-  importance = unquote("")
+  if retina
+    offset_x = 0px / 2
+    offset_y = 0px / 2
+    width = width / 2
+    height = height / 2
+
   if arg and arg2
     if arg2 == !important or arg2 == important
       importance = !important
   else if arg == !important or arg == important
       importance = !important
   if p in arg or r in arg
-    background-position: -25px 0px importance
+    background-position: offset_x offset_y importance
     if r in arg
-      width: 25px importance
-      height: 25px importance
+      width: width importance
+      height: height importance
   else
     display: inline-block importance
-    background: url(../images/sprite.png) no-repeat -25px 0px importance
-    width: 25px importance
-    height: 25px importance
+    background: url('../images/sprite.png') no-repeat offset_x offset_y importance
+    width: width importance
+    height: height importance
+
+    if retina
+      @media $m-retina
+        background-size: 76px 38px
+        background-image: url('../images/sprite@2x.png')
+
+s-tw(arg = null, arg2 = null)
+  importance = unquote("")
+  offset_x = -38px
+  offset_y = 0px
+  width = 38px
+  height = 38px
+  retina = false
+
+  if retina
+    offset_x = -38px / 2
+    offset_y = 0px / 2
+    width = width / 2
+    height = height / 2
+
+  if arg and arg2
+    if arg2 == !important or arg2 == important
+      importance = !important
+  else if arg == !important or arg == important
+      importance = !important
+  if p in arg or r in arg
+    background-position: offset_x offset_y importance
+    if r in arg
+      width: width importance
+      height: height importance
+  else
+    display: inline-block importance
+    background: url('../images/sprite.png') no-repeat offset_x offset_y importance
+    width: width importance
+    height: height importance
+
+    if retina
+      @media $m-retina
+        background-size: 76px 38px
+        background-image: url('../images/sprite@2x.png')
 
