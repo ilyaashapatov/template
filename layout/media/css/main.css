@@ -1275,7 +1275,7 @@ textarea.form-control {
 .icheckbox:before {
   background: url("../images/icheck/icheckbox.png") no-repeat;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-resolution: 144dpi) {
+@media only screen and (min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .icheckbox:before {
     background-image: url("../images/icheck/icheckbox@2x.png");
     background-size: 12px 12px;
@@ -1353,10 +1353,4 @@ textarea.form-control {
   .hidden-only-xs {
     display: none !important;
   }
-}
-.sssg {
-  display: inline-block;
-  background: url("../images/sprite.png") no-repeat -38px 0px;
-  width: 38px;
-  height: 38px;
 }
