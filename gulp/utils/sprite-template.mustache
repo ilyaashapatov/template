@@ -31,7 +31,7 @@ s-{{name}}(arg = null, arg2 = null)
 
     if retina
       @media $m-retina
-        background-size: {{px.total_width}} {{px.total_height}}
+        background-size: ({{px.total_width}} / 2) ({{px.total_height}} / 2)
         background-image: url('../images/sprite@2x.png')
 
 {{/items}}
