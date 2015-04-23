@@ -13,5 +13,5 @@
 $(document).ready(function($) {
 
   // icheck
-  $('[type=radio], [type=checkbox').iCheck()
+  $('[type=radio], [type=checkbox]').iCheck()
 });

@@ -1,2 +1,2 @@
-do ->
+$ ->
   console.log 'ok'
