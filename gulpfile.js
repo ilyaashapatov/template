@@ -17,13 +17,6 @@ var config = {
         'autoprefixer': ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera > 10', 'Explorer >= 9']
     },
 
-    'bootstrap': {
-        'source': source + '/bootstrap/bootstrap.less',
-        'name': 'bootstrap',
-        'dest': dest + '/css',
-        'watch': source + '/css/bootstrap/**',
-    },
-
     'sprites': {
         'retina': false,
         'tmpl': 'gulp/utils/sprite-template.mustache',

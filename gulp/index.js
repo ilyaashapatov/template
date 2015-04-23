@@ -33,21 +33,6 @@ module.exports = function(config){
       .pipe(gulp.dest(config.css.dest))
   });
 
-// =================== Bootstrap ===================
-  gulp.task('bootstrap', function() {
-    gulp.src(config.bootstrap.source)
-      .pipe(less())
-      .on('error', errors)
-      .pipe(
-        gulpif(
-          !debug,
-          cssmin()
-        )
-      )
-      .pipe(concat(config.bootstrap.name + '.css'))
-      .pipe(gulp.dest(config.bootstrap.dest))
-  });
-
 
 // =================== Scripts ===================
   gulp.task('js', function() {
@@ -115,9 +100,6 @@ module.exports = function(config){
     watch(config.css.watch, function() {
         gulp.start('css');
     });
-    watch(config.bootstrap.watch, function() {
-        gulp.start('bootstrap');
-    });
 
     if (config.sprites.retina) {
       watch(config.sprites.dest + '/' + config.sprites.nameSprite + '@2x.png', function() {
@@ -127,7 +109,7 @@ module.exports = function(config){
   });
 
   gulp.task('default', function(){
-    gulp.start(['js', 'sprites', 'css', 'bootstrap', 'watch']);
+    gulp.start(['js', 'sprites', 'css', 'watch']);
   });
 
   gulp.task('debug', function(){

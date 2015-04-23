@@ -627,6 +627,44 @@ a {
 .fs20 {
   font-size: 20px !important;
 }
+.visible-xs,
+.visible-sm,
+.visible-md,
+.visible-lg {
+  display: none !important;
+}
+@media (min-width: 480px) {
+  .hidden-xs {
+    display: none !important;
+  }
+  .visible-xs {
+    display: block !important;
+  }
+}
+@media (min-width: 768px) {
+  .hidden-sm {
+    display: none !important;
+  }
+  .visible-sm {
+    display: block !important;
+  }
+}
+@media (min-width: 1000px) {
+  .hidden-md {
+    display: none !important;
+  }
+  .visible-md {
+    display: block !important;
+  }
+}
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none !important;
+  }
+  .visible-lg {
+    display: block !important;
+  }
+}
 .constrain {
   margin-left: auto;
   margin-right: auto;
@@ -1307,50 +1345,4 @@ textarea.form-control {
 .header {
   height: 60px;
   background: #ddd;
-}
-.hidden-bs,
-.visible-xs,
-.visible-sm,
-.visible-md,
-.hidden-only-bs,
-.visible-only-md,
-.visible-only-sm,
-.visible-only-xs {
-  display: none !important;
-}
-@media (max-width: 1199px) {
-  .visible-md,
-  .visible-only-md,
-  .hidden-only-bs {
-    display: block !important;
-  }
-  .hidden-md,
-  .visible-only-bs,
-  .hidden-only-md {
-    display: none !important;
-  }
-}
-@media (max-width: 999px) {
-  .visible-sm,
-  .visible-only-sm,
-  .hidden-only-md {
-    display: block !important;
-  }
-  .hidden-sm,
-  .visible-only-md,
-  .hidden-only-sm {
-    display: none !important;
-  }
-}
-@media (max-width: 767px) {
-  .visible-xs,
-  .visible-only-xs,
-  .hidden-only-sm {
-    display: block !important;
-  }
-  .hidden-xs,
-  .visible-only-sm,
-  .hidden-only-xs {
-    display: none !important;
-  }
 }
