@@ -1,0 +1,52 @@
+.constrain
+  margin-left auto
+  margin-right auto
+  padding 0 $grid-padding
+  max-width 960px
+
+.g-row
+  margin-left ($grid-padding / -2)
+  margin-right ($grid-padding / -2)
+  clearfix()
+  font-size 0
+  line-height 0
+
+grid-list = ''
+for index in 1..$grid-columns
+  grid-list = grid-list + ", .g-bs-" + index
+  grid-list = grid-list + ", .g-xs-" + index
+  grid-list = grid-list + ", .g-sm-" + index
+  grid-list = grid-list + ", .g-md-" + index
+  grid-list = grid-list + ", .g-lg-" + index
+
+
+{grid-list}
+  padding-left ($grid-padding / 2)
+  padding-right ($grid-padding / 2)
+  box-sizing border-box
+  width 100%
+  min-height 1px
+  font-size $font-size-base
+  line-height $line-height-base
+  vertical-align top
+
+
+make-grid($size)
+  for $index in 1..$grid-columns
+    .g-{$size}-{$index}
+      display inline-block
+      width (floor($index / $grid-columns * 100, 3))%
+
+make-grid(bs)
+
+@media $m-xs
+  make-grid(xs)
+
+@media $m-sm
+  make-grid(sm)
+
+@media $m-md
+  make-grid(md)
+
+@media $m-lg
+  make-grid(lg)
