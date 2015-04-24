@@ -11,7 +11,6 @@ module.exports = function(config){
       uglify = require('gulp-uglify'),
       requi = require('gulp-requi'),
       jade = require('gulp-jade'),
-      unretina = require('gulp-unretina'),
       spritesmith = require('gulp.spritesmith');
 
   var errors = require('./utils/errors'),
@@ -30,7 +29,7 @@ module.exports = function(config){
           cssmin()
         )
       )
-      .pipe(concat(config.css.name + '.css'))
+      .pipe(concat(config.css.name))
       .pipe(gulp.dest(config.css.dest))
   });
 
@@ -52,40 +51,29 @@ module.exports = function(config){
           uglify()
         )
       )
-      .pipe(concat(config.js.name + '.js'))
+      .pipe(concat(config.js.name))
       .pipe(gulp.dest(config.js.dest))
   });
 
 
 // =================== Sprites ===================
   gulp.task('sprites', function() {
-    var imgName = config.sprites.nameSprite + '.png'
-
-    if (config.sprites.retina) {
-      imgName = config.sprites.nameSprite + '@2x.png'
-    }
 
     var spriteData = gulp.src(config.sprites.source)
 
-        .pipe(spritesmith({
-          imgName: imgName,
-          cssName: config.sprites.nameMixins + '.styl',
-          padding: 0,
-          cssFormat: 'stylus',
-          cssTemplate: config.sprites.tmpl,
-          cssVarMap: function(sprite) {
-            sprite.retina = config.sprites.retina
-          }
-        }));
+    spriteData = spriteData.pipe(spritesmith({
+      imgName: config.sprites.nameSprite,
+      cssName: config.sprites.nameMixins,
+      padding: 0,
+      cssFormat: 'stylus',
+      cssTemplate: config.sprites.tmpl,
+      cssVarMap: function(sprite) {
+        sprite.retina = config.sprites.retina
+      }
+    }));
 
     spriteData.css.pipe(gulp.dest(config.sprites.mixins));
     spriteData.img.pipe(gulp.dest(config.sprites.dest));
-  });
-
-  gulp.task('resize_sprites', function(){
-    gulp.src(config.sprites.dest + '/' + config.sprites.nameSprite + '@2x.png')
-        .pipe(unretina())
-        .pipe(gulp.dest(config.sprites.dest));
   });
 
 
@@ -112,12 +100,6 @@ module.exports = function(config){
         gulp.start('css');
     });
 
-    if (config.sprites.retina) {
-      watch(config.sprites.dest + '/' + config.sprites.nameSprite + '@2x.png', function() {
-        gulp.start('resize_sprites');
-      });
-    }
-
     if (config.jade.enable) {
       watch(config.jade.watch, function() {
           gulp.start('jade');
@@ -125,11 +107,20 @@ module.exports = function(config){
     }
   });
 
+
+  var tasks = ['js', 'sprites', 'css']
+
+  if(config.jade.enable) {
+    tasks.push('jade')
+  }
+
+
   gulp.task('default', function(){
-    var tasks = ['js', 'sprites', 'css', 'watch']
-    if(config.jade.enable) {
-      tasks.push('jade')
-    }
+    tasks.push('watch')
+    gulp.start(tasks);
+  });
+
+  gulp.task('build', function(){
     gulp.start(tasks);
   });
 
