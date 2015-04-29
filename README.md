@@ -17,6 +17,7 @@
      + `src/css` – файлы стилей
      + `src/js` – файлы JS/CoffeScript
      + `src/templates` – jade-шаблоны
+- `built` – папка создается при компиляции `jade`
 - `layout` – HTML и скомпилированные файлы
      + `layout/media/images/sprites` – папка для спрайтов
 
@@ -42,10 +43,14 @@
 По умолчанию компиляция jade-шаблонов отключена, включить можно в `builder/gulpfile.js
 
 ```
+    var built = '../built'
+    ...
     'jade': {
         'enable': true
     }
 ```
+`layout/media` следует скопировать в папку `built`
+
 Jade-шаблоны лежат в папке `src/templates`. Компилируются все `*.jade`.
 
 Исключения:

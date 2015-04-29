@@ -1,4 +1,5 @@
-var dest = '../layout/media',
+var built = '../layout', // ../built – for jade
+    dest = built + '/media',
     source = '../src';
 
 var config = {
@@ -29,9 +30,9 @@ var config = {
     },
 
     'jade': {
-        'enable': false,
+        'enable': true,
         'source': [source + '/templates/**/*.jade', '!/**/includes/**/*', '!' + source + '/templates/base.jade'],
-        'dest': '../jade',
+        'dest': built,
         'watch': [source + '/templates/**/*.jade']
     }
 }
