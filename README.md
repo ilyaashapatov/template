@@ -39,6 +39,20 @@
 
 - `gulp build` – то же самое, что и `gulp`, но без запуска процесса отслеживания
 
+
+### Спрайты
+Предусмотренно создание спрайтов для retina-экранов. Обратите внимание на следующие настройки (`builder/gulpfile.js):
+
+```
+    'sprites': {
+        // 'retinaImgName': 'sprite@2x.png',
+        // 'retinaImgPath': '../images/sprite@2x.png',
+        // 'retinaSrcFilter': dest + '/images/sprites/*@2x.png'
+    }
+```
+Для использования – раскомментируйте.
+
+
 ### Jade
 По умолчанию компиляция jade-шаблонов отключена, включить можно в `builder/gulpfile.js
 

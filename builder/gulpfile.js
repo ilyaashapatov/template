@@ -19,14 +19,22 @@ var config = {
     },
 
     'sprites': {
-        'retina': false,
-        'tmpl': 'utils/sprite-template.mustache',
+        'tmpl': 'utils/sprite-template.handlebars',
+
         'source': dest + '/images/sprites/*.png',
         'dest': dest + '/images',
-        'nameSprite': 'sprite.png',
         'watch': dest + '/images/sprites/*.png',
+
         'mixins': source + '/css/variables',
-        'nameMixins': 'sprite-mixins.styl'
+        'nameMixins': 'sprite-mixins.styl',
+        'prefixMixin': 's-',
+
+        'nameSprite': 'sprite.png',
+        'imgPath': '../images/sprite.png',
+        // retina:
+        // 'retinaImgName': 'sprite@2x.png',
+        // 'retinaImgPath': '../images/sprite@2x.png',
+        // 'retinaSrcFilter': dest + '/images/sprites/*@2x.png'
     },
 
     'jade': {

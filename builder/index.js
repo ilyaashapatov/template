@@ -59,18 +59,34 @@ module.exports = function(config){
 // =================== Sprites ===================
   gulp.task('sprites', function() {
 
-    var spriteData = gulp.src(config.sprites.source)
-
-    spriteData = spriteData.pipe(spritesmith({
+    var opts = {
+      cssTemplate: config.sprites.tmpl,
       imgName: config.sprites.nameSprite,
       cssName: config.sprites.nameMixins,
+      imgPath: config.sprites.imgPath,
       padding: 0,
       cssFormat: 'stylus',
-      cssTemplate: config.sprites.tmpl,
       cssVarMap: function(sprite) {
-        sprite.retina = config.sprites.retina
+        sprite.prefix = config.sprites.prefixMixin
+        if (config.sprites.retinaImgName) {
+          sprite.retina = true
+        } else {
+          sprite.retina = false
+        }
       }
-    }));
+    }
+
+    if (config.sprites.retinaImgName) {
+      opts.retinaSrcFilter = config.sprites.retinaSrcFilter;
+      opts.retinaImgName = config.sprites.retinaImgName;
+      opts.retinaImgPath = config.sprites.retinaImgPath;
+    }
+
+    var spriteData = gulp.src(config.sprites.source)
+
+    spriteData = spriteData.pipe(
+      spritesmith(opts)
+    );
 
     spriteData.css.pipe(gulp.dest(config.sprites.mixins));
     spriteData.img.pipe(gulp.dest(config.sprites.dest));
