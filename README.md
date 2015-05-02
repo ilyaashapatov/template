@@ -41,9 +41,9 @@
 
 ```
     'sprites': {
-        // 'retinaImgName': 'sprite@2x.png',
-        // 'retinaImgPath': '../images/sprite@2x.png',
-        // 'retinaSrcFilter': dest + '/images/sprites/*@2x.png'
+        // 'retinaSource': dest + '/images/sprites/*@2x.png',
+        // 'retinaNameSprite': 'sprite@2x.png',
+        // 'retinaImgPath': '../images/sprite@2x.png'
     }
 ```
 Для использования – раскомментируйте.
