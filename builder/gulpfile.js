@@ -1,4 +1,4 @@
-var built = '../layout', // ../built – for jade
+var built = '../built',
     dest = built + '/media',
     source = '../src';
 
@@ -21,7 +21,7 @@ var config = {
     'sprites': {
         'tmpl': 'utils/sprite-template.handlebars',
 
-        'source': dest + '/images/sprites/*.png',
+        'source': [dest + '/images/sprites/*.png', '!' + dest + '/images/sprites/*@*.png'],
         'dest': dest + '/images',
         'watch': dest + '/images/sprites/*.png',
 
@@ -31,10 +31,10 @@ var config = {
 
         'nameSprite': 'sprite.png',
         'imgPath': '../images/sprite.png',
-        // retina:
-        // 'retinaImgName': 'sprite@2x.png',
-        // 'retinaImgPath': '../images/sprite@2x.png',
-        // 'retinaSrcFilter': dest + '/images/sprites/*@2x.png'
+        // retina
+        // 'retinaSource': dest + '/images/sprites/*@2x.png',
+        // 'retinaNameSprite': 'sprite@2x.png',
+        // 'retinaImgPath': '../images/sprite@2x.png'
     },
 
     'jade': {

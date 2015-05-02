@@ -1,5 +1,6 @@
 module.exports = function(config){
   var gulp = require('gulp'),
+      gulpsync = require('gulp-sync')(gulp),
       gulpif = require('gulp-if'),
       watch = require('gulp-watch'),
       autoprefixer = require('gulp-autoprefixer'),
@@ -20,7 +21,13 @@ module.exports = function(config){
 // =================== CSS ===================
   gulp.task('css', function() {
     gulp.src(config.css.source)
-      .pipe(stylus())
+      .pipe(requi())
+      .pipe(
+        gulpif(
+          /[.]styl$/,
+          stylus()
+        )
+      )
       .on('error', errors)
       .pipe(autoprefixer({ browsers: config.css.autoprefixer }))
       .pipe(
@@ -57,7 +64,7 @@ module.exports = function(config){
 
 
 // =================== Sprites ===================
-  gulp.task('sprites', function() {
+  gulp.task('baseSprites', function() {
 
     var opts = {
       cssTemplate: config.sprites.tmpl,
@@ -67,22 +74,17 @@ module.exports = function(config){
       padding: 0,
       cssFormat: 'stylus',
       cssVarMap: function(sprite) {
-        sprite.prefix = config.sprites.prefixMixin
-        if (config.sprites.retinaImgName) {
-          sprite.retina = true
+        sprite.prefix = config.sprites.prefixMixin;
+        if (config.sprites.retinaNameSprite) {
+          sprite.retina = true;
+          sprite.retinaImgPath = config.sprites.retinaImgPath;
         } else {
-          sprite.retina = false
+          sprite.retina = false;
         }
       }
     }
 
-    if (config.sprites.retinaImgName) {
-      opts.retinaSrcFilter = config.sprites.retinaSrcFilter;
-      opts.retinaImgName = config.sprites.retinaImgName;
-      opts.retinaImgPath = config.sprites.retinaImgPath;
-    }
-
-    var spriteData = gulp.src(config.sprites.source)
+    var spriteData = gulp.src(config.sprites.source);
 
     spriteData = spriteData.pipe(
       spritesmith(opts)
@@ -91,6 +93,32 @@ module.exports = function(config){
     spriteData.css.pipe(gulp.dest(config.sprites.mixins));
     spriteData.img.pipe(gulp.dest(config.sprites.dest));
   });
+
+  gulp.task('retinaSprites', function() {
+
+    var opts = {
+      imgName: config.sprites.retinaNameSprite,
+      imgPath: config.sprites.retinaImgPath,
+      padding: 0,
+      cssName: '.'
+    }
+
+    var spriteData = gulp.src(config.sprites.retinaSource);
+
+    spriteData = spriteData.pipe(
+      spritesmith(opts)
+    );
+
+    spriteData.img.pipe(gulp.dest(config.sprites.dest));
+  });
+
+  tasksSprites = ['baseSprites'];
+
+  if (config.sprites.retinaNameSprite) {
+    tasksSprites.push('retinaSprites');
+  }
+
+  gulp.task('sprites', tasksSprites);
 
 
 // ===================  Jade  ===================
@@ -123,27 +151,23 @@ module.exports = function(config){
     }
   });
 
-
-  var tasks = ['js', 'sprites', 'css']
+  var tasks = [
+    'js',
+    [
+      'sprites',
+      'css'
+    ]
+  ]
 
   if(config.jade.enable) {
     tasks.push('jade')
   }
 
-
-  gulp.task('default', function(){
-    tasks.push('watch')
-    gulp.start(tasks);
-  });
-
-  gulp.task('build', function(){
-    gulp.start(tasks);
-  });
+  gulp.task('default', gulpsync.async(tasks));
 
   gulp.task('debug', function(){
     console.log('!!! RUNNING IN DEBUG MODE !!!');
     debug = true;
-    gulp.start('default');
+    gulp.start(gulpsync.sync(['default', 'watch']));
   });
-
 }

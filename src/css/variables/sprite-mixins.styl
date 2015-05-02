@@ -16,6 +16,7 @@ sprite-retina-mixin()
       background-image url('')
 
 s-fb(arg = null, arg2 = null)
+  importance = unquote("")
   if arg and arg2
     if arg2 == !important or arg2 == important
       importance = !important
@@ -29,11 +30,12 @@ s-fb(arg = null, arg2 = null)
   else
     display inline-block importance
     background url('../images/sprite.png') no-repeat 0px 0px importance
-    width width importance
-    height height importance
+    width 38px importance
+    height 38px importance
     sprite-retina-mixin()
 
 s-tw(arg = null, arg2 = null)
+  importance = unquote("")
   if arg and arg2
     if arg2 == !important or arg2 == important
       importance = !important
@@ -47,7 +49,7 @@ s-tw(arg = null, arg2 = null)
   else
     display inline-block importance
     background url('../images/sprite.png') no-repeat -38px 0px importance
-    width width importance
-    height height importance
+    width 38px importance
+    height 38px importance
     sprite-retina-mixin()
 
