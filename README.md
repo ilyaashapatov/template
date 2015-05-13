@@ -17,8 +17,8 @@
      + `src/css` – файлы стилей
      + `src/js` – файлы JS/CoffeScript
      + `src/templates` – jade-шаблоны
-- `built` – папка создается при компиляции `jade`
-- `layout` – HTML и скомпилированные файлы
+- `built_jade` – папка создается при компиляции `jade`
+- `built` – HTML и скомпилированные файлы
      + `layout/media/images/sprites` – папка для спрайтов
 
 
