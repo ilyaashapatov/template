@@ -7,14 +7,6 @@
 //!    4. s-home(!important), -home(r, !important)
 
 
-retina = false
-
-sprite-retina-mixin()
-  if retina
-    @media $m-retina
-      background-size  
-      background-image url('')
-
 s-fb(arg = null, arg2 = null)
   importance = unquote("")
   if arg and arg2
@@ -32,7 +24,7 @@ s-fb(arg = null, arg2 = null)
     background url('../images/sprite.png') no-repeat 0px 0px importance
     width 38px importance
     height 38px importance
-    sprite-retina-mixin()
+
 
 s-tw(arg = null, arg2 = null)
   importance = unquote("")
@@ -51,5 +43,5 @@ s-tw(arg = null, arg2 = null)
     background url('../images/sprite.png') no-repeat -38px 0px importance
     width 38px importance
     height 38px importance
-    sprite-retina-mixin()
+
 

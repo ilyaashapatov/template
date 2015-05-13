@@ -48,16 +48,18 @@
 ```
 
 ### Jade
-По умолчанию компиляция jade-шаблонов отключена, включить можно в `builder/gulpfile.js
+По умолчанию компиляция jade-шаблонов отключена, включить можно в `builder/gulpfile.js`
 
 ```
-    var built = '../built'
+    var built_jade = '../built',
+        dest = built_jade + '/media';
     ...
     'jade': {
         'enable': true
     }
 ```
-`layout/media` следует скопировать в папку `built`
+
+`layout/media` следует скопировать в папку `built` (создать, если такой папки нет)
 
 Jade-шаблоны лежат в папке `src/templates`. Компилируются все `*.jade`.
 
@@ -65,3 +67,5 @@ Jade-шаблоны лежат в папке `src/templates`. Компилиру
 
 -  содержимое папок `includes`
 - `base.jade`
+
+p.s. Что бы исключить случайную замену HTML-файлов в папке `layout` компиляция jade-шаблонов происходит в отдельную папку
