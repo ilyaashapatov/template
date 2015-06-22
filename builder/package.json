@@ -2,6 +2,10 @@
   "name": "HTML-template-2x2",
   "version": "2.2.0",
   "description": "HTML template 2x2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trolev/html-template-2x2.git"
+  },
   "main": "gulpfile.js",
   "author": "Aleksandr Aslanov [trolev@gmail.com]",
   "devDependencies": {
