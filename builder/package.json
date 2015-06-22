@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/trolev/html-template-2x2.git"
   },
+  "readme": "README.md",
   "main": "gulpfile.js",
   "author": "Aleksandr Aslanov [trolev@gmail.com]",
   "devDependencies": {
