@@ -32,6 +32,7 @@
     "gulp-uglify": "^1.1.0",
     "gulp-unretina": "^0.1.2",
     "gulp-watch": "^4.2.0",
+    "gulp-zip": "^3.0.2",
     "gulp.spritesmith": "^3.5.3"
   },
   "license": "ISC"

@@ -11,6 +11,7 @@ module.exports = function (config) {
     uglify = require('gulp-uglify'),
     requi = require('gulp-requi'),
     swig = require('gulp-swig'),
+    zip = require('gulp-zip'),
     spritesmith = require('gulp.spritesmith');
 
   var errors = require('./utils/errors'),
@@ -129,6 +130,14 @@ module.exports = function (config) {
   });
 
 
+// ===================  zip  ===================
+  gulp.task('zip', function () {
+    gulp.src(config.zip.source)
+        .pipe(zip('files.zip'))
+        .pipe(gulp.dest(config.zip.dest));
+  });
+
+
 // ============================================================================
   gulp.task('watch', function () {
     watch(config.js.watch, function () {
@@ -163,7 +172,7 @@ module.exports = function (config) {
   gulp.task('default', gulpsync.async(tasks));
 
   gulp.task('start', function () {
-    console.log('!!! RUNNING IN DEBUG MODE !!!');
+    console.log('+++++ RUNNING IN DEBUG MODE +++++');
     debug = true;
     gulp.start(gulpsync.sync(['default', 'watch']));
   });
