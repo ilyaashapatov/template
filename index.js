@@ -1,25 +1,24 @@
-module.exports = function(config){
+module.exports = function (config) {
   var gulp = require('gulp'),
-      gulpsync = require('gulp-sync')(gulp),
-      gulpif = require('gulp-if'),
-      watch = require('gulp-watch'),
-      autoprefixer = require('gulp-autoprefixer'),
-      coffee = require('gulp-coffee'),
-      stylus = require('gulp-stylus'),
-      less = require('gulp-less'),
-      cssmin = require('gulp-cssmin'),
-      concat = require('gulp-concat'),
-      uglify = require('gulp-uglify'),
-      requi = require('gulp-requi'),
-      jade = require('gulp-jade'),
-      spritesmith = require('gulp.spritesmith');
+    gulpsync = require('gulp-sync')(gulp),
+    gulpif = require('gulp-if'),
+    watch = require('gulp-watch'),
+    autoprefixer = require('gulp-autoprefixer'),
+    coffee = require('gulp-coffee'),
+    stylus = require('gulp-stylus'),
+    cssmin = require('gulp-cssmin'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    requi = require('gulp-requi'),
+    swig = require('gulp-swig'),
+    spritesmith = require('gulp.spritesmith');
 
   var errors = require('./utils/errors'),
-      debug = false;
+    debug = false;
 
 
 // =================== CSS ===================
-  gulp.task('css', function() {
+  gulp.task('css', function () {
     gulp.src(config.css.source)
       .pipe(requi())
       .pipe(
@@ -37,12 +36,12 @@ module.exports = function(config){
         )
       )
       .pipe(concat(config.css.name))
-      .pipe(gulp.dest(config.css.dest))
+      .pipe(gulp.dest(config.css.dest));
   });
 
 
 // =================== Scripts ===================
-  gulp.task('js', function() {
+  gulp.task('js', function () {
     gulp.src(config.js.source)
       .pipe(requi())
       .pipe(
@@ -59,12 +58,12 @@ module.exports = function(config){
         )
       )
       .pipe(concat(config.js.name))
-      .pipe(gulp.dest(config.js.dest))
+      .pipe(gulp.dest(config.js.dest));
   });
 
 
 // =================== Sprites ===================
-  gulp.task('baseSprites', function() {
+  gulp.task('baseSprites', function () {
 
     var opts = {
       cssTemplate: config.sprites.tmpl,
@@ -73,7 +72,7 @@ module.exports = function(config){
       imgPath: config.sprites.imgPath,
       padding: 0,
       cssFormat: 'stylus',
-      cssVarMap: function(sprite) {
+      cssVarMap: function (sprite) {
         sprite.prefix = config.sprites.prefixMixin;
         if (config.sprites.retinaNameSprite) {
           sprite.retina = true;
@@ -82,7 +81,7 @@ module.exports = function(config){
           sprite.retina = false;
         }
       }
-    }
+    };
 
     var spriteData = gulp.src(config.sprites.source);
 
@@ -94,14 +93,14 @@ module.exports = function(config){
     spriteData.img.pipe(gulp.dest(config.sprites.dest));
   });
 
-  gulp.task('retinaSprites', function() {
+  gulp.task('retinaSprites', function () {
 
     var opts = {
       imgName: config.sprites.retinaNameSprite,
       imgPath: config.sprites.retinaImgPath,
       padding: 0,
       cssName: '.'
-    }
+    };
 
     var spriteData = gulp.src(config.sprites.retinaSource);
 
@@ -112,7 +111,7 @@ module.exports = function(config){
     spriteData.img.pipe(gulp.dest(config.sprites.dest));
   });
 
-  tasksSprites = ['baseSprites'];
+  var tasksSprites = ['baseSprites'];
 
   if (config.sprites.retinaNameSprite) {
     tasksSprites.push('retinaSprites');
@@ -121,32 +120,30 @@ module.exports = function(config){
   gulp.task('sprites', tasksSprites);
 
 
-// ===================  Jade  ===================
-  gulp.task('jade', function() {
-    gulp.src(config.jade.source)
-        .pipe(jade({
-          pretty: true
-        }))
+// ===================  swig  ===================
+  gulp.task('swig', function () {
+    gulp.src(config.swig.source)
+        .pipe(swig())
         .on('error', errors)
-        .pipe(gulp.dest(config.jade.dest))
+        .pipe(gulp.dest(config.swig.dest));
   });
 
 
 // ============================================================================
-  gulp.task('watch', function(){
-    watch(config.js.watch, function() {
-        gulp.start('js');
+  gulp.task('watch', function () {
+    watch(config.js.watch, function () {
+      gulp.start('js');
     });
-    watch(config.sprites.watch, function() {
-        gulp.start('sprites');
+    watch(config.sprites.watch, function () {
+      gulp.start('sprites');
     });
-    watch(config.css.watch, function() {
-        gulp.start('css');
+    watch(config.css.watch, function () {
+      gulp.start('css');
     });
 
-    if (config.jade.enable) {
-      watch(config.jade.watch, function() {
-          gulp.start('jade');
+    if (config.swig.enable) {
+      watch(config.swig.watch, function () {
+        gulp.start('swig');
       });
     }
   });
@@ -157,17 +154,17 @@ module.exports = function(config){
       'sprites',
       'css'
     ]
-  ]
+  ];
 
-  if(config.jade.enable) {
-    tasks.push('jade')
+  if (config.swig.enable) {
+    tasks.push('swig');
   }
 
   gulp.task('default', gulpsync.async(tasks));
 
-  gulp.task('debug', function(){
+  gulp.task('start', function () {
     console.log('!!! RUNNING IN DEBUG MODE !!!');
     debug = true;
     gulp.start(gulpsync.sync(['default', 'watch']));
   });
-}
+};

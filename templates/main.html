@@ -1,8 +1,7 @@
-extends base
+{% extends 'base.html' %}
 
-block title
-  - var title='Main page'
+{% block title %}Main page{% endblock %}
 
-block content
-
-  | main-content
+{% block content %}
+<p>This is just an awesome page.</p>
+{% endblock %}

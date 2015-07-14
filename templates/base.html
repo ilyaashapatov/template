@@ -1,32 +1,30 @@
-doctype html
-html
-  head
-    meta(charset='UTF-8')
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/images/favicon/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/images/favicon/favicon.ico" rel="icon">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <script src="assets/js/libs/modernizr-2.7.1.custom.min.js"></script>
+    <!--[if lte IE 9]>
+    <script src='assets/js/libs/respond.1.4.2.min.js'></script>
+    <![endif]-->
 
-    block title
-    title #{title}
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% block header %}{% endblock %}
 
-    meta(name="viewport", content="width=device-width, initial-scale=1")
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
 
-    link(href='media/images/favicon/apple-touch-icon.png', rel='apple-touch-icon')
-    link(href='media/images/favicon/favicon.ico', rel='icon')
+    {% block footer %}{% endblock %}
 
-
-    link(href='media/css/main.css', rel='stylesheet')
-    script(src='media/js/libs/modernizr-2.7.1.custom.min.js')
-
-    //[if lte IE 9]>
-      <script src='media/js/libs/respond.1.4.2.min.js'></script>
-      <![endif]
-
-  body
-
-    include includes/header
-
-    .container
-      block content
-
-    include includes/footer
-
-    script(src='http://yastatic.net/jquery/1.11.2/jquery.min.js')
-    script(src='media/js/main.js')
+    <script src="http://yastatic.net/jquery/1.11.2/jquery.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    {% block js %}{% endblock %}
+  </body>
+</html>
