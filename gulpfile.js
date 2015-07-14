@@ -40,9 +40,9 @@ var config = {
 
   'swig': {
     'enable': true,
-    'source': [source + '/**/*.html', '!/**/includes/**/*', '!' + source + '/base.html'],
-    'dest': built_swig,
-    'watch': [source + '/**/*.html']
+    'source': [built_swig + '/**/*.html', '!' + built_swig + '/includes/**/*', '!' + built_swig + '/base.html'],
+    'dest': built,
+    'watch': [built_swig + '/**/*.html']
   }
 };
 
