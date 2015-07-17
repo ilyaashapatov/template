@@ -124,8 +124,7 @@ module.exports = function (config) {
 // ===================  swig  ===================
   gulp.task('swig', function () {
     gulp.src(config.swig.source)
-        .pipe(swig())
-        .on('error', errors)
+        .pipe(swig(config.swig.opt))
         .pipe(gulp.dest(config.swig.dest));
   });
 

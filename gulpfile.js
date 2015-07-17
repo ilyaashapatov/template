@@ -43,6 +43,11 @@ var config = {
     enable: true,
     source: [templates + '/**/*.html', '!' + templates + '/includes/*', '!' + templates + '/base.html'],
     dest: build,
+    opt: {
+      defaults: {
+        cache: false
+      }
+    },
     watch: [templates + '/**/*.html']
   },
 
