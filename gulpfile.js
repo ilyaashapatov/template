@@ -32,10 +32,11 @@ var config = {
 
     nameSprite: 'sprite.png',
     imgPath: '../images/sprite.png',
-    // retina
-    // retinaSource: assets + '/images/sprites/*@2x.png',
-    // retinaNameSprite: 'sprite@2x.png',
-    // retinaImgPath: '../images/sprite@2x.png'
+
+    supportRetina: false,
+    retinaSource: assets + '/images/sprites/*@2x.png',
+    retinaNameSprite: 'sprite@2x.png',
+    retinaImgPath: '../images/sprite@2x.png'
   },
 
   swig: {

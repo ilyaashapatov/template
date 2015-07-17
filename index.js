@@ -75,7 +75,7 @@ module.exports = function (config) {
       cssFormat: 'stylus',
       cssVarMap: function (sprite) {
         sprite.prefix = config.sprites.prefixMixin;
-        if (config.sprites.retinaNameSprite) {
+        if (config.sprites.supportRetina) {
           sprite.retina = true;
           sprite.retinaImgPath = config.sprites.retinaImgPath;
         } else {
@@ -114,7 +114,7 @@ module.exports = function (config) {
 
   var tasksSprites = ['baseSprites'];
 
-  if (config.sprites.retinaNameSprite) {
+  if (config.sprites.supportRetina) {
     tasksSprites.push('retinaSprites');
   }
 

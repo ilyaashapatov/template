@@ -48,9 +48,11 @@
 
 ```
     'sprites': {
-        // 'retinaSource': dest + '/images/sprites/*@2x.png',
-        // 'retinaNameSprite': 'sprite@2x.png',
-        // 'retinaImgPath': '../images/sprite@2x.png'
+        // code ...
+        supportRetina: false,
+        retinaSource: assets + '/images/sprites/*@2x.png',
+        retinaNameSprite: 'sprite@2x.png',
+        retinaImgPath: '../images/sprite@2x.png'
     }
 ```
 
